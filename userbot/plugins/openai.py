@@ -116,6 +116,21 @@ async def gpt_response_with_prompt(event):
     await edit_or_reply(catevent, gpt_response)
 
 
+
+@catub.cat_cmd(
+    pattern="gemini(?:\s|$)([\s\S]*)",
+    command=("gemini", plugin_category),
+    info={
+        "header": "Generate GEMINI response with prompt",
+        "description": "Use {tr}gemini followed by a prompt to generate a GPT response using the provided text",
+        "usage": [
+            "{tr}gemini <text/reply>",
+        ],
+        "examples": [
+            "{tr}gemini write a paragraph on cat",
+        ],
+    },
+)
 async def gemini_response_with_prompt(event):
     "Generate a Gemini response using the provided text using Gemini Api"
     text = event.pattern_match.group(1)
