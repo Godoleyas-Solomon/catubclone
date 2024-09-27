@@ -27,6 +27,7 @@ conversations = {}
 
 def generate_gemini_response(input_text, chat_id):
     try:
+        genai.configure(api_key=gemini_api_key)
         model = genai.GenerativeModel('gemini-pro')
         response = model.generate_content(input_text)
         # generated_text = response.choices[0].message.content.strip()
