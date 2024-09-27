@@ -30,7 +30,7 @@ def generate_gemini_response(input_text, chat_id):
         model = genai.GenerativeModel('gemini-pro')
         response = model.generate_content(input_text)
         # generated_text = response.choices[0].message.content.strip()
-        generated_text = response.text
+        generated_text = response.choices[0].message.content.strip()
 
         # Save the assistant's response to the conversation history
         # messages.append({"role": "assistant", "content": generated_text})
