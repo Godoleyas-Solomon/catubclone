@@ -26,28 +26,17 @@ conversations = {}
 
 
 def generate_gemini_response(input_text, chat_id):
-    global conversations
-    model = gvarstatus("CHAT_MODEL") or "gpt-3.5-turbo"
-    system_message = gvarstatus("SYSTEM_MESSAGE") or None
-    messages = conversations.get(chat_id, [])
-
-    # Add system message if it exists
-    if system_message and not messages:
-        messages.append({"role": "system", "content": system_message})
-
-    # Add the new user message
-    messages.append({"role": "user", "content": input_text})
     try:
         model = genai.GenerativeModel('gemini-pro')
-        response = model.generate_content(messages)
+        response = model.generate_content(input_text)
         # generated_text = response.choices[0].message.content.strip()
         generated_text = response.text
 
         # Save the assistant's response to the conversation history
-        messages.append({"role": "assistant", "content": generated_text})
-        conversations[chat_id] = messages
+        # messages.append({"role": "assistant", "content": generated_text})
+        # conversations[chat_id] = messages
     except Exception as e:
-        generated_text = f"`Error generating GPT response: {str(e)}`"
+        generated_text = f"`Error generating GEMINI response: {str(e)}`"
     return generated_text
 
 def generate_gpt_response(input_text, chat_id):
