@@ -145,6 +145,7 @@ async def gemini_response_with_prompt(event):
 
     catevent = await edit_or_reply(event, "__Generating answer...__")
     gemini_response = generate_gemini_response(text, chat_id)
+    print(gemini_response)
     await edit_or_reply(catevent, gemini_response)
 
 
